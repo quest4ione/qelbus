@@ -1,3 +1,9 @@
+#[cfg(feature = "std")]
+mod hashmap;
+
+#[cfg(feature = "std")]
+pub use self::hashmap::HashMapMemory;
+
 pub trait Memory<T> {
     type Error;
 
