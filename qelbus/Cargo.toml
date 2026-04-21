@@ -3,4 +3,16 @@ name = "qelbus"
 version = "0.1.0"
 edition = "2024"
 
-[dependencies]
+[dependencies.num-traits]
+version = "0.2.19"
+default-features = false
+
+[dependencies.serde]
+version = "1.0.228"
+optional = true
+default-features = false
+features = ["derive"]
+
+[features]
+default = []
+serde = ["dep:serde"]
