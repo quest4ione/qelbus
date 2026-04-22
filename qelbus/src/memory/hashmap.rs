@@ -17,11 +17,8 @@ where
         Ok(self.0.get(address).cloned().unwrap_or(T::default()))
     }
 
-    fn modify<O>(
-        &mut self,
-        address: T,
-        modifier: impl FnOnce(&mut T) -> O,
-    ) -> Result<O, Self::Error> {
-        Ok(modifier(self.0.entry(address).or_default()))
+    fn set(&mut self, address: T, value: T) -> Result<(), Self::Error> {
+        self.0.insert(address, value);
+        Ok(())
     }
 }

@@ -26,10 +26,10 @@ where
         let c = self.memory.get(&self.program_counter)?;
 
         let a_val = self.memory.get(&a)?;
-        let is_positive = self.memory.modify(b, |b_val| {
-            *b_val -= a_val;
-            b_val.is_positive()
-        })?;
+        let mut b_val = self.memory.get(&b)?;
+        b_val -= a_val;
+        let is_positive = b_val.is_positive();
+        self.memory.set(b, b_val)?;
 
         if is_positive {
             self.program_counter += &one;
