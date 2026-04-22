@@ -17,6 +17,7 @@
           pkgs.rustc
           pkgs.clippy
           pkgs.rustfmt
+          pkgs.cargo-hack
         ];
       };
     };
