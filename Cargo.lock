@@ -62,6 +62,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "qelbus-bin"
+version = "0.1.0"
+dependencies = [
+ "qelbus",
+]
+
+[[package]]
 name = "quote"
 version = "1.0.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
