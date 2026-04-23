@@ -1,6 +1,8 @@
+mod array;
 #[cfg(feature = "std")]
 mod hashmap;
 
+pub use self::array::{AddressOutOfRangeError, ArrayMemory, ToIndex};
 #[cfg(feature = "std")]
 pub use self::hashmap::HashMapMemory;
 
