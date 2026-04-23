@@ -1,4 +1,6 @@
 mod array;
+#[cfg(feature = "alloc")]
+mod paged_array;
 
 use core::{
     error::Error,
@@ -8,6 +10,8 @@ use core::{
 use nostd_cow::RefCow;
 
 pub use self::array::ArrayMemory;
+#[cfg(feature = "alloc")]
+pub use self::paged_array::PagedArrayMemory;
 
 pub trait Memory<T> {
     type Error;

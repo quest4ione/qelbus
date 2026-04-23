@@ -23,5 +23,7 @@ default-features = false
 features = ["derive"]
 
 [features]
+default = ["alloc"]
+alloc = []
 serde = ["dep:serde"]
 num-bigint = ["dep:num-bigint"]
