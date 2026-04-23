@@ -6,6 +6,32 @@ pub trait ToIndex: Sized {
     fn to_index(address: RefCow<'_, Self>) -> Option<usize>;
 }
 
+macro_rules! impl_toindex_prim {
+    { $($signed: ty as $unsigned: ty),* $(,)? } => {
+        $(
+        impl ToIndex for $unsigned {
+            fn to_index(address: RefCow<'_, Self>) -> Option<usize> {
+                address.into_owned().try_into().ok()
+            }
+        }
+
+        impl ToIndex for $signed {
+            fn to_index(address: RefCow<'_, Self>) -> Option<usize> {
+                (address.into_owned() as $unsigned).try_into().ok()
+            }
+        }
+        )*
+    }
+}
+
+impl_toindex_prim! {
+    i8 as u8,
+    i16 as u16,
+    i32 as u32,
+    i64 as u64,
+    i128 as u128,
+}
+
 pub struct AddressOutOfRangeError;
 
 pub struct ArrayMemory<const N: usize, T>([T; N]);
