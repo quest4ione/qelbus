@@ -30,6 +30,7 @@ impl_toindex_prim! {
     i32 as u32,
     i64 as u64,
     i128 as u128,
+    isize as usize,
 }
 
 #[cfg(feature = "num-bigint")]
