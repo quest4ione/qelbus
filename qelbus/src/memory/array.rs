@@ -32,6 +32,20 @@ impl_toindex_prim! {
     i128 as u128,
 }
 
+#[cfg(feature = "num-bigint")]
+impl ToIndex for num_bigint::BigUint {
+    fn to_index(address: RefCow<'_, Self>) -> Option<usize> {
+        (&*address).try_into().ok()
+    }
+}
+
+#[cfg(feature = "num-bigint")]
+impl ToIndex for num_bigint::BigInt {
+    fn to_index(address: RefCow<'_, Self>) -> Option<usize> {
+        (&*address).try_into().ok()
+    }
+}
+
 pub struct AddressOutOfRangeError;
 
 pub struct ArrayMemory<const N: usize, T>([T; N]);
